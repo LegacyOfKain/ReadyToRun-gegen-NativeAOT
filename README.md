@@ -1,5 +1,26 @@
 ﻿# 🧩 .NET Multi-App Architecture: SharedLib + ConsoleApp + NativeApp + R2RApp
 
+---
+
+## 📚 First of all, what is ReadyToRun?
+
+ReadyToRun (R2R) is a compilation technique used in the .NET Core platform to enable faster application startup. R2R aims to reduce runtime by precompiling certain parts of the application into machine code.
+
+From the definition above, we can understand that while JIT compiles code at runtime, the ReadyToRun approach allows this compilation to be done beforehand.
+
+Keep in mind that R2R does not convert all code into machine code upfront; the JIT compiler is still used. If optimization is needed, R2R code can be recompiled by the JIT.
+
+### Advantages
+- The startup time of applications compiled with R2R is significantly reduced during execution. Since R2R eliminates the need for JIT compilation when the application runs, it starts faster.
+- Additionally, because there is less JIT compilation needed during application execution, the load on the CPU is lighter.
+
+### Disadvantages
+- Applications compiled with R2R may have larger file sizes due to the inclusion of precompiled machine code.
+- The compilation time for R2R can be longer during the build phase because specific methods and code segments need to be converted into machine code.
+- Moreover, R2R only compiles certain methods into machine code, which can result in the loss of some dynamic optimization opportunities.
+
+---
+
 This solution demonstrates how to build and run three types of .NET applications — regular, Native AOT, and ReadyToRun — that share a common library (`SharedLib`).
 
 ## 📁 Project Structure
